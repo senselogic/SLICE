@@ -24,7 +24,7 @@ slice [options] input_file_path output_file_prefix
 
 ## Options
 
-```bash
+```
 --volume 0.0001 : maximum volume for silences (from zero to one)
 --duration 0.05 : minimum duration for silences (in seconds)
 --trim : remove the silences in the output files
