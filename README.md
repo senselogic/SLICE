@@ -25,7 +25,7 @@ slice [options] input_file_path output_file_prefix
 ## Options
 
 ```
---volume 0.0001 : maximum volume for silences (from zero to one)
+--volume 0.0001 : maximum volume for silences (between 0 and 1)
 --duration 0.05 : minimum duration for silences (in seconds)
 --trim : remove the silences in the output files
 --name slice_name_file_path : use the lines of a text file to name the output files
