@@ -46,7 +46,7 @@ slice --duration 0.05 --trim input_file.wav OUT/output_file_
 Splits the audio file at pauses of at least 50 milliseconds, removing the silences in the output files.
 
 ```bash
-slice --duration 0.05 --trim--name slice_name_file.txt input_file.wav OUT/output_file_
+slice --duration 0.05 --trim --name slice_name_file.txt input_file.wav OUT/output_file_
 ```
 
 Splits the audio file at pauses of at least 50 milliseconds, removing the silences in the output files, using the lines of the "slice_name_file.txt" to name the output files.
