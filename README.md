@@ -37,23 +37,23 @@ slice [options] input_file_path output_file_prefix
 slice --duration 0.05 input_file.wav OUT/output_file_
 ```
 
-Split the audio file at pauses of at least 50 milliseconds.
+Splits the audio file at pauses of at least 50 milliseconds.
 
 ```bash
 slice --duration 0.05 --trim input_file.wav OUT/output_file_
 ```
 
-Split the audio file at pauses of at least 50 milliseconds, removing the silences in the output files.
+Splits the audio file at pauses of at least 50 milliseconds, removing the silences in the output files.
 
 ```bash
 slice --duration 0.05 --trim--name slice_name_file.txt input_file.wav OUT/output_file_
 ```
 
-Split the audio file at pauses of at least 50 milliseconds, removing the silences in the output files, using the lines of the "slice_name_file.txt" to name the output files.
+Splits the audio file at pauses of at least 50 milliseconds, removing the silences in the output files, using the lines of the "slice_name_file.txt" to name the output files.
 
 ## Limitations
 
-Only supports uncompressed mono 16 bits PCM files in Wave format.
+Only supports mono 16-bit PCM audio files in WAV format.
 
 ## Version
 
