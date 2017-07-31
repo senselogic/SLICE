@@ -37,19 +37,19 @@ slice [options] input_file_path output_file_prefix
 slice --volume 0.001 --duration 0.04 input_file.wav OUT/output_file_
 ```
 
-Splits the audio file at silences of at least 40 milliseconds.
+Splits the input file at each silence of at least 40 milliseconds.
 
 ```bash
 slice --volume 0.001 --duration 0.04 --trim input_file.wav OUT/output_file_
 ```
 
-Splits the audio file at silences of at least 40 milliseconds, removing them in the output files.
+Splits the input file at each silence of at least 40 milliseconds, removing them in the output files.
 
 ```bash
 slice --volume 0.001 --duration 0.04 --trim --name name_file.txt input_file.wav OUT/output_file_
 ```
 
-Splits the audio file at silences of at least 40 milliseconds, removing them in the output files named using the lines of the text file.
+Splits the input file at each silence of at least 40 milliseconds, removing them in the output files, named from the lines of the text file.
 
 ## Limitations
 
