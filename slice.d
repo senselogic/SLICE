@@ -428,8 +428,8 @@ void main(
     string
         option;
         
-    SilenceVolume = 0.0001f;
-    SilenceDuration = 0.05f;
+    SilenceVolume = 0.001f;
+    SilenceDuration = 0.04f;
     TrimOptionIsEnabled = false;
     SliceNameFilePath = "";
 
@@ -486,14 +486,14 @@ void main(
         writeln( "Usage :" );
         writeln( "    slice [options] input_file_path output_file_prefix" );
         writeln( "Options :" );
-        writeln( "    --volume 0.0001" );
-        writeln( "    --duration 0.05" );
+        writeln( "    --volume 0.001" );
+        writeln( "    --duration 0.04" );
         writeln( "    --trim" );
-        writeln( "    --name \"slice_name_file.txt\"" );
+        writeln( "    --name \"name_file.txt\"" );
         writeln( "Examples :" );
-        writeln( "    slice --duration 0.05 input_file.wav OUT/output_file_" );
-        writeln( "    slice --duration 0.05 --trim input_file.wav OUT/output_file_" );
-        writeln( "    slice --duration 0.05 --trim --name slice_name_file.txt input_file.wav OUT/" );
+        writeln( "    slice --volume 0.001 --duration 0.04 input_file.wav OUT/output_file_" );
+        writeln( "    slice --volume 0.001 --duration 0.04 --trim input_file.wav OUT/output_file_" );
+        writeln( "    slice --volume 0.001 --duration 0.04 --trim --name name_file.txt input_file.wav OUT/" );
         
         Abort( "Invalid arguments : " ~ argument_array.to!string() );
     }
