@@ -256,7 +256,7 @@ class SOUND
         silence_sample_count = ( SilenceDuration * SampleCountPerSecond ).to!long();
 
         for ( slice_index = 0;
-              slice_index < SliceArray.length - 1;
+              slice_index + 1 < SliceArray.length;
               ++slice_index )
         {
             if ( SliceArray[ slice_index ].ItIsSilence
