@@ -35,7 +35,7 @@ import std.string : endsWith, replace, split, startsWith;
 class SLICE
 {
     bool
-        ItIsSilence;
+        IsSilence;
     long
         SampleIndex,
         SampleCount;
@@ -228,12 +228,12 @@ class SOUND
                     && GetSample( sample_index + 2 ) <= silence_sample
                     && GetSample( sample_index + 3 ) <= silence_sample );
             
-            if ( it_is_silence != slice.ItIsSilence )
+            if ( it_is_silence != slice.IsSilence )
             {
                 SliceArray ~= slice;
 
                 slice = new SLICE;
-                slice.ItIsSilence = it_is_silence;
+                slice.IsSilence = it_is_silence;
                 slice.SampleIndex = sample_index;
             }
 
@@ -259,8 +259,8 @@ class SOUND
               slice_index + 1 < SliceArray.length;
               ++slice_index )
         {
-            if ( SliceArray[ slice_index ].ItIsSilence
-                 == SliceArray[ slice_index + 1 ].ItIsSilence )
+            if ( SliceArray[ slice_index ].IsSilence
+                 == SliceArray[ slice_index + 1 ].IsSilence )
             {
                 SliceArray[ slice_index ].SampleCount
                     += SliceArray[ slice_index + 1 ].SampleCount;
@@ -270,10 +270,10 @@ class SOUND
                 --slice_index;
             }
             else if ( slice_index + 2 < SliceArray.length
-                      && !SliceArray[ slice_index ].ItIsSilence
-                      && SliceArray[ slice_index + 1 ].ItIsSilence
+                      && !SliceArray[ slice_index ].IsSilence
+                      && SliceArray[ slice_index + 1 ].IsSilence
                       && SliceArray[ slice_index + 1 ].SampleCount < silence_sample_count
-                      && !SliceArray[ slice_index + 2 ].ItIsSilence )
+                      && !SliceArray[ slice_index + 2 ].IsSilence )
             {
                 SliceArray[ slice_index ].SampleCount
                     += SliceArray[ slice_index + 1 ].SampleCount
@@ -315,7 +315,7 @@ class SOUND
         {
             slice = SliceArray[ slice_index ];
 
-            if ( !slice.ItIsSilence
+            if ( !slice.IsSilence
                  && slice.SampleCount > 0 )
             {
                 output_file_path = OutputFilePrefix;
