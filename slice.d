@@ -473,8 +473,7 @@ void main(
         }
     }
 
-    if ( argument_array.length == 2
-         && argument_array[ 0 ].endsWith( ".wav" ) )
+    if ( argument_array.length == 2 )
     {
         InputFilePath = argument_array[ 0 ];
         OutputFilePrefix = argument_array[ 1 ];
