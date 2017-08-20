@@ -1,3 +1,5 @@
+![](https://github.com/senselogic/SLICE/blob/master/LOGO/slice.png)
+
 # Slice
 
 Audio file splitter.
