@@ -55,27 +55,27 @@ class SOUND
         SliceArray;
 
     // ~~
-    
+
     enum
         HeaderByteCount = 44;
 
-    // ~~ 
-    
+    // ~~
+
     long GetNatural8(
         long byte_index
         )
     {
         return ByteArray[ byte_index ];
     }
-    
-    // ~~ 
-    
+
+    // ~~
+
     long GetNatural16(
         long byte_index
         )
     {
-        return 
-            GetNatural8( byte_index ) 
+        return
+            GetNatural8( byte_index )
             | ( GetNatural8( byte_index + 1 ) << 8 );
     }
 
@@ -104,18 +104,18 @@ class SOUND
         ByteArray[ byte_index + 2 ] = ( ( natural >> 16 ) & 255 ).to!ubyte();
         ByteArray[ byte_index + 3 ] = ( ( natural >> 24 ) & 255 ).to!ubyte();
     }
-    
+
     // ~~
-    
+
     long GetByteIndex(
         long sample_index
         )
     {
         return HeaderByteCount + sample_index * 2;
     }
-    
+
     // ~~
-    
+
     long GetSample(
         long sample_index
         )
@@ -138,17 +138,17 @@ class SOUND
 
         return 0;
     }
-        
+
     // ~~
-    
+
     void ReadFile(
         string file_path
         )
     {
         writeln( "Reading file : ", file_path );
-        
+
         ByteArray = cast( ubyte[] )file_path.read();
-        
+
         if ( GetNatural8( 0 ) == 'R'
              && GetNatural8( 1 ) == 'I'
              && GetNatural8( 2 ) == 'F'
@@ -175,12 +175,12 @@ class SOUND
         }
         else
         {
-            Abort( "Invalid file format" ); 
+            Abort( "Invalid file format" );
         }
     }
-    
+
     // ~~
-    
+
     void WriteFile(
         string file_path,
         long sample_index,
@@ -189,22 +189,22 @@ class SOUND
     {
         SOUND
             sound;
-            
+
         writeln( "Writing file : ", file_path );
-            
+
         sound = new SOUND;
-        
-        sound.ByteArray 
-            = ByteArray[ 0 .. HeaderByteCount ] 
+
+        sound.ByteArray
+            = ByteArray[ 0 .. HeaderByteCount ]
               ~ ByteArray[ GetByteIndex( sample_index ) .. GetByteIndex( sample_index + sample_count ) ];
-              
+
         sound.SetNatural32( 40, sample_count * 2 );
-        
+
         file_path.write( sound.ByteArray );
     }
-    
+
     // ~~
-    
+
     void FindSlices(
         )
     {
@@ -214,12 +214,12 @@ class SOUND
             silence_sample;
         SLICE
             slice;
-            
+
         silence_sample = ( SilenceVolume * 32767 ).to!long();
 
         SliceArray ~= new SLICE;
         slice = new SLICE;
-        
+
         foreach ( sample_index; 0 .. SampleCount )
         {
             it_is_silence
@@ -227,7 +227,7 @@ class SOUND
                     && GetSample( sample_index + 1 ) <= silence_sample
                     && GetSample( sample_index + 2 ) <= silence_sample
                     && GetSample( sample_index + 3 ) <= silence_sample );
-            
+
             if ( it_is_silence != slice.IsSilence )
             {
                 SliceArray ~= slice;
@@ -239,7 +239,7 @@ class SOUND
 
             ++slice.SampleCount;
         }
-        
+
         SliceArray ~= slice;
         SliceArray ~= new SLICE;
     }
@@ -411,14 +411,14 @@ void ProcessFile(
 {
     SOUND
         sound;
-        
+
     sound = new SOUND;
     sound.ReadFile( InputFilePath );
     sound.FindSlices();
     sound.FilterSlices();
     sound.WriteSlices();
 }
-    
+
 // ~~
 
 void main(
@@ -427,7 +427,7 @@ void main(
 {
     string
         option;
-        
+
     SilenceVolume = 0.001f;
     SilenceDuration = 0.04f;
     TrimOptionIsEnabled = false;
@@ -477,7 +477,7 @@ void main(
     {
         InputFilePath = argument_array[ 0 ];
         OutputFilePrefix = argument_array[ 1 ];
-        
+
         ProcessFile();
     }
     else
@@ -493,7 +493,7 @@ void main(
         writeln( "    slice --volume 0.001 --duration 0.04 input_file.wav OUT/output_file_" );
         writeln( "    slice --volume 0.001 --duration 0.04 --trim input_file.wav OUT/output_file_" );
         writeln( "    slice --volume 0.001 --duration 0.04 --trim --name name_file.txt input_file.wav OUT/" );
-        
+
         Abort( "Invalid arguments : " ~ argument_array.to!string() );
     }
 }
