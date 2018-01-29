@@ -351,7 +351,7 @@ class SOUND
                     sample_index -= prior_sample_count;
                     sample_count += prior_sample_count;
 
-                    if ( slice_index == SliceArray.length - 2 )
+                    if ( slice_index == SliceArray.length.to!long() - 2 )
                     {
                         next_sample_count = SliceArray[ slice_index + 1 ].SampleCount;
                     }
