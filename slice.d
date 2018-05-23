@@ -192,7 +192,7 @@ class SOUND
 
         writeln( "Writing file : ", file_path );
 
-        sound = new SOUND;
+        sound = new SOUND();
 
         sound.ByteArray
             = ByteArray[ 0 .. HeaderByteCount ]
@@ -217,8 +217,8 @@ class SOUND
 
         silence_sample = ( SilenceVolume * 32767 ).to!long();
 
-        SliceArray ~= new SLICE;
-        slice = new SLICE;
+        SliceArray ~= new SLICE();
+        slice = new SLICE();
 
         foreach ( sample_index; 0 .. SampleCount )
         {
@@ -232,7 +232,7 @@ class SOUND
             {
                 SliceArray ~= slice;
 
-                slice = new SLICE;
+                slice = new SLICE();
                 slice.IsSilence = it_is_silence;
                 slice.SampleIndex = sample_index;
             }
@@ -241,7 +241,7 @@ class SOUND
         }
 
         SliceArray ~= slice;
-        SliceArray ~= new SLICE;
+        SliceArray ~= new SLICE();
     }
 
     // ~~
@@ -412,7 +412,7 @@ void ProcessFile(
     SOUND
         sound;
 
-    sound = new SOUND;
+    sound = new SOUND();
     sound.ReadFile( InputFilePath );
     sound.FindSlices();
     sound.FilterSlices();
