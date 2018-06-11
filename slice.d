@@ -18,8 +18,6 @@
     along with Slice.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// == LOCAL
-
 // -- IMPORTS
 
 import core.stdc.stdlib : exit;
@@ -27,8 +25,6 @@ import std.conv : to;
 import std.file : read, readText, write;
 import std.stdio : writeln;
 import std.string : endsWith, replace, split, startsWith;
-
-// == GLOBAL
 
 // -- TYPES
 
